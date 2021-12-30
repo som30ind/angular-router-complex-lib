@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "@som30ind/poc-pkg": {
+      "projectType": "library",
+      "root": "projects/lib-poc-pkg",
+      "sourceRoot": "projects/lib-poc-pkg/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/lib-poc-pkg/tsconfig.lib.json",
+            "project": "projects/lib-poc-pkg/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lib-poc-pkg/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lib-poc-pkg/src/test.ts",
+            "tsConfig": "projects/lib-poc-pkg/tsconfig.spec.json",
+            "karmaConfig": "projects/lib-poc-pkg/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lib-poc-pkg/tsconfig.lib.json",
+              "projects/lib-poc-pkg/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "@som30ind/poc-pkg"
+}
